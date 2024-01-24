@@ -5,6 +5,9 @@ on:
     branches:
       - '**'
 
+env:
+  IMAGE_NAME: forward32/devops-for-programmers-project-74:latest
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,5 +32,7 @@ jobs:
         with:
           context: .
           file: Dockerfile.production
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}
+          cache-to: type=inline
           push: true
-          tags: "forward32/devops-for-programmers-project-74:latest"
+          tags: ${{ env.IMAGE_NAME }}
