@@ -15,6 +15,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: prepare .env
+        run: |
+          touch .env
+          echo "DATABASE_HOST=db" >> .env
+          echo "DATABASE_NAME=postgres" >> .env
+          echo "DATABASE_USERNAME=postgres" >> .env
+          echo "DATABASE_PASSWORD=1q2w3e" >> .env
+
       - name: run tests
         run: make test
 
